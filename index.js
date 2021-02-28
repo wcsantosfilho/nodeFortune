@@ -3,6 +3,7 @@
 const http = require('http')
 const fortune = require('fortune')
 const fortuneHTTP = require('fortune-http')
+const PORT = process.env.PORT || 5000
 
 const store = fortune({
   user: {
@@ -30,4 +31,4 @@ const server = http.createServer((request, response) =>
   listener(request, response)
   .catch(error => { /* error logging */ }))
 
-store.connect().then(() => server.listen(1337))
+store.connect().then(() => server.listen(PORT, () => { console.log(`Listening on ${PORT}`)}))
